@@ -1,10 +1,47 @@
-//interface HabitDayProps {
-//    completed: number
-//  }
+import * as Popover from '@radix-ui/react-popover';
+import clsx from 'clsx';
+import { ProgressBar } from './ProgressBar';
+
+interface HabitDayProps {
+    completed: number
+    amount: number
+}
   
-  export function HabitDay() {
+  export function HabitDay({completed, amount}: HabitDayProps) {
+    const completedPercentage = Math.round((completed / amount) * 100)
+
     return (
-            <div className="w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg"></div>
+          
+      <Popover.Root>
+        <Popover.Trigger className={clsx
+
+        //estilos que serão fixos nesse componente
+        
+        ('w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg',
+        
+        //estilos que irão ser dependentes do resultado da constante completedPercentage
+
+        {'bg-zinc-800 border-zinc-700': completedPercentage>= 0 && completedPercentage < 10,
+         'bg-violet-400 border-violet-300': completedPercentage>=10 && completedPercentage < 20,
+         'bg-violet-500 border-violet-400': completedPercentage>=20 && completedPercentage < 40,
+         'bg-violet-600 border-violet-500': completedPercentage>=40 && completedPercentage < 60,
+         'bg-violet-700 border-violet-600': completedPercentage>=60 && completedPercentage < 80,
+         'bg-violet-800 border-violet-700': completedPercentage>=80 && completedPercentage < 100,
+         'bg-violet-900 border-violet-800': completedPercentage >= 100,
+        
+        })}/>
+        <Popover.Portal>
+          <Popover.Content className='min-w-[320px] p-6 rounded-lg bg-zinc-900/95 flex flex-col border border-zinc-700'>
+              <span className='font-medium text-zinc-400'>Segunda-Feira,</span>
+              <span className='mt-1 font-bold leading-tight text-2xl'>17/01/2023</span>
+
+              <ProgressBar progress={completedPercentage} />
+
+            <Popover.Arrow height={8} className="fill-zinc-800" />
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+
     );
   }
   
