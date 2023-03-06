@@ -6,7 +6,7 @@ const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
 
 const summaryDates = generateDatesFromYearBeginning()
 
-const minimumSummaryDatesSize = 18*7 //18 weeks
+const minimumSummaryDatesSize = 18*7 //18 weeks = linhas na horizontal * 7 days
 
 const amountOfDaysToFill = minimumSummaryDatesSize - summaryDates.length
 
