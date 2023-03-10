@@ -12,3 +12,4 @@ Tecnologias e bibliotecas utilizadas:
 ✅ Typescript
 ✅ Phosphor-react
 ✅ Radix
+✅ Axios
